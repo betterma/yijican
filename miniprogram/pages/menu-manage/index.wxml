@@ -1,0 +1,103 @@
+<view class="container">
+    <button class="add-btn" bindtap="addNewMenu">新增菜单</button>
+
+    <view class="menu-list">
+        <block wx:for="{{menus}}" wx:key="_id">
+            <view class="menu-item">
+                <image src="{{item.image}}" class="menu-image" />
+                <view class="info">
+                    <text class="name">{{item.name}}</text>
+                    <text class="ingredients">{{item.formattedIngredients}}</text>
+                </view>
+            </view>
+            <button class="delete-btn" bindtap="deleteMenu" data-id="{{item._id}}">删除</button>
+        </block>
+    </view>
+
+    <!-- 底部抽屉 -->
+    <view class="drawer-mask" wx:if="{{drawerVisible}}" bindtap="closeDrawer"></view>
+    <view class="drawer-container {{drawerVisible ? 'show' : ''}}">
+        <!-- 抽屉头部 -->
+        <view class="drawer-header">
+        <text>新增菜单</text>
+        <text class="close-icon" bindtap="closeDrawer">×</text>
+        </view>
+
+        <!-- 表单内容 -->
+        <scroll-view class="drawer-body" scroll-y>
+        <view class="form-item">
+            <text class="label">菜单名称</text>
+            <input 
+            class="input" 
+            placeholder="请输入菜单名称" 
+            value="{{newMenu.name}}"
+            bindinput="onNameInput"
+            />
+        </view>
+
+        <!-- 食材列表 -->
+        <view class="form-item">
+            <view class="ingredient-header">
+            <text class="label">食材清单</text>
+            <button class="add-ingredient" bindtap="addIngredient">+ 添加食材</button>
+            </view>
+            
+            <block wx:for="{{newMenu.ingredients}}" wx:key="index">
+            <view class="ingredient-item">
+                <input
+                class="ingredient-input"
+                placeholder="名称"
+                value="{{item.name}}"
+                data-index="{{index}}"
+                bindinput="onIngredientNameInput"
+                />
+                <input
+                class="quantity-input"
+                type="number"
+                placeholder="数量"
+                value="{{item.quantity}}"
+                data-index="{{index}}"
+                bindinput="onQuantityInput"
+                />
+                <picker 
+                class="unit-picker"
+                value="{{item.unitIndex}}" 
+                range="{{units}}"
+                data-index="{{index}}"
+                bindchange="onUnitChange"
+                >
+                <view class="picker-view">
+                    {{item.unit || '选择单位'}}
+                </view>
+                </picker>
+                <text 
+                class="delete-ingredient" 
+                bindtap="removeIngredient" 
+                data-index="{{index}}"
+                >×</text>
+            </view>
+            </block>
+        </view>
+
+        <!-- 图片上传 -->
+        <view class="form-item">
+            <text class="label">菜品图片</text>
+            <view class="upload-area" bindtap="uploadImage">
+            <image 
+                wx:if="{{newMenu.image}}" 
+                src="{{newMenu.image}}" 
+                class="preview-image"
+            />
+            <view wx:else class="upload-placeholder">
+                <text>点击上传图片</text>
+            </view>
+            </view>
+        </view>
+        </scroll-view>
+
+        <!-- 提交按钮 -->
+        <view class="drawer-footer">
+        <button class="submit-btn" bindtap="submitMenu">保存菜单</button>
+        </view>
+    </view>
+</view>

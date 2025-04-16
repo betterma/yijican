@@ -1,0 +1,42 @@
+.container {
+    padding: 20rpx;
+}
+.add-btn {
+    padding: 0;
+    margin: 0;
+    width: 120px;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #7c1160;
+    color: #fff;
+    background-color: #7c1160;
+}
+.menu-item {
+    padding: 10px;
+    display: flex;
+    border: 1px solid black;
+}
+
+.menu-image {
+    border: 1px solid black;
+    width: 90px;
+    height: 90px;
+}
+
+.info {
+    border: 1px solid black;
+    display: block;
+    flex-grow: 1;
+}
+.name, .ingredients{
+    display: inline-block;
+    margin: 10px;
+}
+
+.ingredients {
+    color: #666;
+    font-size: 24rpx;
+    display: block;
+    margin-top: 10rpx;
+}

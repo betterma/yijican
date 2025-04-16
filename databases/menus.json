@@ -1,0 +1,9 @@
+{
+    "_id": "数据库自动生成ID",
+    "_openid": "用户唯一标识",
+    "name": "菜单名称",
+    "type": "lunch/dinner",
+    "ingredients": ["食材1", "食材2"],
+    "image": "云文件ID",
+    "createTime": "2023-10-20T10:00:00.000Z"
+  }

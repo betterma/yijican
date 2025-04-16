@@ -1,0 +1,55 @@
+<!-- components/set-meal-dialog/index.wxml -->
+<van-popup
+  show="{{ show }}"
+  position="bottom"
+  custom-style="height: 70%;"
+>
+  <view class="dialog-container">
+    <view class="dialog-header">
+      <text>{{ selectedDate }}</text>
+      <van-button 
+        type="primary" 
+        size="mini" 
+        bindtap="onClose"
+      >关闭</van-button>
+    </view>
+
+    <view class="picker-section">
+      <picker 
+        bindchange="bindLunchChange" 
+        value="{{ lunchIndex }}" 
+        range="{{ menuList }}" 
+        range-key="name"
+      >
+        <view class="picker-item">
+          午餐：{{ menuList[lunchIndex]?.name || '请选择' }}
+        </view>
+      </picker>
+
+      <picker 
+        bindchange="bindDinnerChange" 
+        value="{{ dinnerIndex }}" 
+        range="{{ menuList }}" 
+        range-key="name"
+      >
+        <view class="picker-item">
+          晚餐：{{ menuList[dinnerIndex]?.name || '请选择' }}
+        </view>
+      </picker>
+    </view>
+
+    <view class="note-section">
+      <textarea 
+        placeholder="输入备注（如：少油少盐）" 
+        bindinput="onNoteInput" 
+        value="{{ note }}"
+      />
+    </view>
+
+    <van-button 
+      type="info" 
+      block 
+      bindtap="onConfirm"
+    >保存计划</van-button>
+  </view>
+</van-popup>

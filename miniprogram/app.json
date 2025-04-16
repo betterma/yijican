@@ -1,0 +1,23 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/menu-manage/index"
+    ],
+    "window": {
+        "navigationBarTitleText": "努力家餐",
+        "navigationBarBackgroundColor": "#7c1160",
+        "navigationBarTextStyle": "white",
+        "backgroundColor": "#f6f6f6"
+    },
+    "usingComponents": {
+        "van-calendar": "miniprogram_npm/@vant/weapp/calendar/index",
+        "van-popup": "miniprogram_npm/@vant/weapp/popup/index",
+        "van-dialog": "miniprogram_npm/@vant/weapp/dialog/index"
+    },
+    "permission": {
+        "scope.userLocation": {
+            "desc": "需要获取您的位置信息用于附近食材推荐"
+        }
+    },
+    "sitemapLocation": "sitemap.json"
+}
