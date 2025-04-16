@@ -1,7 +1,8 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/menu-manage/index"
+        "pages/menu-manage/index",
+        "pages/purchase/index"
     ],
     "window": {
         "navigationBarTitleText": "努力家餐",

@@ -1,0 +1,12 @@
+<!-- filepath: c:\Users\Administrator\Desktop\yijiacan\miniprogram\pages\purchase\index.wxml -->
+<view class="container">
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+  <view wx:else>
+    <block wx:for="{{purchaseList}}" wx:key="name">
+      <view class="meal-card">
+        <text class="title">{{item.name}}</text>
+        <text class="ingredients">数量：{{item.count}}</text>
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,69 @@
+<view class="container">
+
+    <!-- 顶部按钮 -->
+    <view class="header">
+        <button class="btn" bindtap="navToPurchase">购买清单</button>
+        <button class="btn" bindtap="navToMenuManage">菜单管理</button>
+    </view>
+
+    <!-- 日历区域 -->
+    <view class="calendar-box">
+        <van-calendar 
+            title="日历" 
+            poppable="{{ false }}" 
+            show-confirm="{{ false }}" 
+            class="calendar" 
+            bind:select="onDateSelect" 
+        />
+    </view>
+
+    <!-- 当日信息 -->
+    <view class="info-panel">
+        <view class="date">{{currentDate}}</view>
+        <view class="meal-card">
+            <text class="title">午餐</text>
+            <block wx:for="{{lunchInfo}}" wx:key="menu_id">
+                <view class="meal-item">
+                    <text>{{item.menu_id}}</text>
+                    <text wx:if="{{item.custom_notes}}">（{{item.custom_notes}}）</text>
+                </view>
+            </block>
+        </view>
+         <view class="meal-card">
+            <text class="title">晚餐</text>
+            <block wx:for="{{dinnerInfo}}" wx:key="menu_id">
+                <view class="meal-item">
+                    <text>{{item.menu_id}}</text>
+                    <text wx:if="{{item.custom_notes}}">（{{item.custom_notes}}）</text>
+                </view>
+            </block>
+        </view>
+    
+    </view>
+
+    <!-- 设置弹窗组件 -->
+    <set-meal-dialog id="mealDialog" menu-list="{{menuList}}" bind:confirm="saveDailyPlan" />
+
+    <button class="add-btn" bindtap="addIngredient">新增食材</button>
+    <view class="ingredient-list">
+        <block wx:for="{{ingredients}}" wx:key="_id">
+            <view class="ingredient-item">
+                <text>{{item.name}}</text>
+                <text>价格：{{item.price}} 元</text>
+            </view>
+        </block>
+    </view>
+
+    <view class="drawer-mask" wx:if="{{drawerVisible}}" bindtap="closeDrawer"></view>
+    <view class="drawer-container {{drawerVisible ? 'show' : ''}}" wx:if="{{drawerVisible}}">
+        <view class="drawer-header">
+            <text>新增食材</text>
+            <text class="close-icon" bindtap="closeDrawer">×</text>
+        </view>
+        <view class="drawer-body">
+            <input placeholder="食材名称" bindinput="onNameInput" />
+            <input placeholder="价格（元）" type="number" bindinput="onPriceInput" />
+        </view>
+        <button class="submit-btn" bindtap="submitIngredient">保存</button>
+    </view>
+</view>

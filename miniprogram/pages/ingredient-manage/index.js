@@ -6,7 +6,10 @@ Page({
     lunchInfo: [],
     dinnerInfo: [],
     markedDates: [],
-    menuList: []
+    menuList: [],
+    ingredients: [],
+    newIngredient: { name: '', price: '' },
+    drawerVisible: false
   },
 
   onLoad() {
@@ -14,6 +17,7 @@ Page({
       currentDate: dayjs().format('YYYY-MM-DD')
     })
     this.getTodayMenu()
+    this.loadIngredients();
   },
 
   getTodayMenu() {
@@ -58,6 +62,50 @@ Page({
     }).then(() => {
       wx.showToast({ title: '保存成功' });
       this.getTodayMenu();
+    }).catch(() => {
+      wx.showToast({ title: '保存失败', icon: 'none' });
+    });
+  },
+
+  async loadIngredients() {
+    const res = await wx.cloud.database().collection('ingredients').get();
+    this.setData({ ingredients: res.data });
+  },
+
+  addIngredient() {
+    this.setData({
+      drawerVisible: true,
+      newIngredient: { name: '', price: '' }
+    });
+  },
+
+  closeDrawer() {
+    this.setData({ drawerVisible: false });
+  },
+
+  onNameInput(e) {
+    this.setData({ 'newIngredient.name': e.detail.value });
+  },
+
+  onPriceInput(e) {
+    this.setData({ 'newIngredient.price': e.detail.value });
+  },
+
+  submitIngredient() {
+    const db = wx.cloud.database();
+    const newIngredient = this.data.newIngredient;
+
+    if (!newIngredient.name || !newIngredient.price) {
+      wx.showToast({ title: '请填写完整信息', icon: 'none' });
+      return;
+    }
+
+    db.collection('ingredients').add({
+      data: newIngredient
+    }).then(() => {
+      wx.showToast({ title: '保存成功' });
+      this.loadIngredients();
+      this.setData({ drawerVisible: false });
     }).catch(() => {
       wx.showToast({ title: '保存失败', icon: 'none' });
     });

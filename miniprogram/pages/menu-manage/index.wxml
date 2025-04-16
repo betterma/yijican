@@ -9,8 +9,11 @@
                     <text class="name">{{item.name}}</text>
                     <text class="ingredients">{{item.formattedIngredients}}</text>
                 </view>
+                <view class="actions">
+                    <button class="edit-btn" bindtap="editMenu" data-id="{{item._id}}">编辑</button>
+                    <button class="delete-btn" bindtap="deleteMenu" data-id="{{item._id}}">删除</button>
+                </view>
             </view>
-            <button class="delete-btn" bindtap="deleteMenu" data-id="{{item._id}}">删除</button>
         </block>
     </view>
 

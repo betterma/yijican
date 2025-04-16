@@ -18,6 +18,8 @@
 
 .menu-item {
     display: flex;
+    align-items: center;
+    justify-content: space-between; /* 左右分布 */
     padding: 20rpx;
     margin-bottom: 20rpx;
     background-color: #fff;
@@ -57,6 +59,24 @@
     line-height: 40rpx;
     text-align: center;
     background-color: #ff4d4f;
+    color: #fff;
+    border-radius: 8rpx;
+    font-size: 24rpx;
+    margin-left: 10rpx;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10rpx; /* 按钮间距 */
+}
+
+.edit-btn {
+    width: 80rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    text-align: center;
+    background-color: #1890ff; /* 蓝色编辑按钮 */
     color: #fff;
     border-radius: 8rpx;
     font-size: 24rpx;

@@ -50,3 +50,23 @@
     font-size: 24rpx;
     margin-top: 10rpx;
 }
+
+.add-btn {
+    width: 200rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    border-radius: 8rpx;
+    background-color: #ff8c00;
+    color: #fff;
+    font-size: 28rpx;
+    margin-bottom: 20rpx;
+}
+
+.ingredient-item {
+    padding: 20rpx;
+    margin-bottom: 10rpx;
+    background-color: #fff;
+    border-radius: 8rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}

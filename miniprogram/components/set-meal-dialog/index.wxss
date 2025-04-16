@@ -28,3 +28,29 @@
     padding: 20rpx;
     border: 1rpx solid #ddd;
   }
+
+.actions {
+    display: flex;
+    flex-direction: row; /* 横向排列 */
+    gap: 20rpx; /* 按钮间距 */
+}
+
+.edit-btn,
+.delete-btn {
+    width: 120rpx; /* 增加宽度 */
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    font-size: 26rpx; /* 增加字体大小 */
+    border-radius: 8rpx;
+}
+
+.edit-btn {
+    background-color: #1890ff; /* 蓝色编辑按钮 */
+    color: #fff;
+}
+
+.delete-btn {
+    background-color: #ff4d4f; /* 红色删除按钮 */
+    color: #fff;
+}
