@@ -5,9 +5,10 @@
     ],
     "window": {
         "navigationBarTitleText": "努力家餐",
-        "navigationBarBackgroundColor": "#7c1160",
+        "navigationBarBackgroundColor": "#ff8c00",
         "navigationBarTextStyle": "white",
-        "backgroundColor": "#f6f6f6"
+        "backgroundColor": "#f5f5f5", 
+        "backgroundTextStyle": "dark"
     },
     "usingComponents": {
         "van-calendar": "miniprogram_npm/@vant/weapp/calendar/index",

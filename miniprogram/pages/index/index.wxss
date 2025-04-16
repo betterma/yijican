@@ -1,52 +1,52 @@
-
 .container {
     padding: 20rpx;
 }
 
 .btn {
-    padding: 0;
-    margin: 0;
-    width: 120px;
-    display: inline-block;
-    height: 40px;
-    line-height: 40px;
-    border: 1px solid #7c1160;
+    width: 200rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    border-radius: 8rpx;
+    background-color: #ff8c00;
     color: #fff;
-    background-color: #7c1160;
+    font-size: 28rpx;
+    margin-bottom: 20rpx;
 }
 
 .header {
     display: flex;
-    margin-bottom: 30rpx;
     justify-content: space-between;
+    margin-bottom: 30rpx;
 }
 
 .calendar-box {
     width: 100%;
-    height: 400px;
-    /* border: 1px solid black; */
-    border-radius: 5px;
-    margin-bottom: 10px;
+    height: 400rpx;
+    border-radius: 8rpx;
+    background-color: #fff;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+    padding: 20rpx;
+    margin-bottom: 20rpx;
 }
 
-
- .meal-card {
+.meal-card {
     padding: 20rpx;
     margin: 20rpx 0;
     border-radius: 12rpx;
-    background: #f5f5f5;
-  }
+    background: #fff;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
 
-  .title {
-      display: block;
-      color: rgb(38, 141, 69);
-      font-weight: 200;
-      font-weight: bolder;
-  }
-  
-  .ingredients {
+.title {
+    color: #333;
+    font-size: 32rpx;
+    font-weight: bold;
+    margin-bottom: 10rpx;
+}
+
+.ingredients {
     color: #666;
     font-size: 24rpx;
-    display: block;
     margin-top: 10rpx;
-  }
+}
