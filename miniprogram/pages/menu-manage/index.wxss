@@ -1,46 +1,69 @@
 .container {
     padding: 20rpx;
+    background-color: #f5f5f5;
+    min-height: 100vh;
 }
+
 .add-btn {
-    padding: 0;
-    margin: 0;
-    width: 120px;
-    display: inline-block;
-    height: 40px;
-    line-height: 40px;
-    border: 1px solid #7c1160;
+    width: 200rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    border-radius: 30rpx;
+    background-color: #ff8c00;
     color: #fff;
-    background-color: #7c1160;
+    font-size: 28rpx;
+    margin-bottom: 20rpx;
 }
+
 .menu-item {
-    padding: 10px;
     display: flex;
-    border: 1px solid black;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+    background-color: #fff;
+    border-radius: 16rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
 }
 
 .menu-image {
-    border: 1px solid black;
-    width: 90px;
-    height: 90px;
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 8rpx;
+    margin-right: 20rpx;
 }
 
 .info {
-    border: 1px solid black;
-    display: block;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-.name, .ingredients{
-    display: inline-block;
-    margin: 10px;
+
+.name {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10rpx;
 }
 
 .ingredients {
-    color: #666;
     font-size: 24rpx;
-    display: block;
-    margin-top: 10rpx;
+    color: #999;
 }
 
+.delete-btn {
+    width: 80rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    text-align: center;
+    background-color: #ff4d4f;
+    color: #fff;
+    border-radius: 8rpx;
+    font-size: 24rpx;
+    margin-left: 10rpx;
+}
+
+/* 抽屉样式 */
 .drawer-container {
     position: fixed;
     bottom: 0;
@@ -48,9 +71,12 @@
     right: 0;
     height: 80%;
     background-color: #fff;
+    border-top-left-radius: 16rpx;
+    border-top-right-radius: 16rpx;
     transform: translateY(100%);
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
+    box-shadow: 0 -2rpx 8rpx rgba(0, 0, 0, 0.1);
 }
 
 .drawer-container.show {
@@ -65,4 +91,143 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx;
+    border-bottom: 1rpx solid #eee;
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #333;
+}
+
+.close-icon {
+    font-size: 36rpx;
+    color: #999;
+    cursor: pointer;
+}
+
+.drawer-body {
+    padding: 20rpx;
+    overflow-y: auto;
+}
+
+.form-item {
+    margin-bottom: 20rpx;
+}
+
+.label {
+    font-size: 28rpx;
+    color: #333;
+    margin-bottom: 10rpx;
+    display: block;
+}
+
+.input {
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    padding: 0 20rpx;
+    border: 1rpx solid #ddd;
+    border-radius: 8rpx;
+    font-size: 28rpx;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.ingredient-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10rpx;
+}
+
+.add-ingredient {
+    font-size: 28rpx;
+    color: #ff8c00;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.ingredient-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10rpx;
+}
+
+.ingredient-input,
+.quantity-input {
+    flex: 1;
+    height: 60rpx;
+    line-height: 60rpx;
+    padding: 0 20rpx;
+    border: 1rpx solid #ddd;
+    border-radius: 8rpx;
+    font-size: 28rpx;
+    color: #333;
+    background-color: #f9f9f9;
+    margin-right: 10rpx;
+}
+
+.unit-picker {
+    flex: 1;
+    height: 60rpx;
+    line-height: 60rpx;
+    border: 1rpx solid #ddd;
+    border-radius: 8rpx;
+    font-size: 28rpx;
+    color: #333;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.delete-ingredient {
+    font-size: 32rpx;
+    color: #ff4d4f;
+    cursor: pointer;
+}
+
+.upload-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200rpx;
+    border: 1rpx dashed #ddd;
+    border-radius: 8rpx;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8rpx;
+}
+
+.upload-placeholder {
+    font-size: 28rpx;
+    color: #999;
+}
+
+.drawer-footer {
+    padding: 20rpx;
+    border-top: 1rpx solid #eee;
+    background-color: #fff;
+}
+
+.submit-btn {
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    background-color: #ff8c00;
+    color: #fff;
+    font-size: 28rpx;
+    border-radius: 8rpx;
 }
