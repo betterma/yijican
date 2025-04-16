@@ -1,4 +1,4 @@
-import Dialog from '@vant/weapp/dialog/dialog'
+import Dialog from '@vant/weapp/dialog/dialog';
 
 Page({
   data: {
@@ -7,7 +7,9 @@ Page({
       name: '',
       ingredients: [],
       image: ''
-    }
+    },
+    units: ['克', '千克', '毫升', '升', '个', '份'], // 单位列表
+    drawerVisible: false // 控制抽屉显示，初始值为 false
   },
 
   onLoad() {
@@ -15,8 +17,7 @@ Page({
   },
 
   async loadMenus() {
-    const res = await wx.cloud.database().collection('menus')
-      .get();
+    const res = await wx.cloud.database().collection('menus').get();
     const menus = res.data.map(menu => {
       return {
         ...menu,
@@ -36,9 +37,8 @@ Page({
       success: async res => {
         if (res.confirm) {
           await wx.cloud.database().collection('menus')
-            .where({
-              _id: menuId
-            }).remove();
+            .where({ _id: menuId })
+            .remove();
           this.loadMenus();
         }
       }
@@ -46,10 +46,14 @@ Page({
   },
 
   addNewMenu() {
-    Dialog.confirm({
-      show: true,
-      selector: '#menuDialog'
+    this.setData({
+      drawerVisible: true, // 显示抽屉
+      newMenu: { name: '', ingredients: [], image: '' }
     });
+  },
+
+  closeDrawer() {
+    this.setData({ drawerVisible: false }); // 隐藏抽屉
   },
 
   onNameInput(e) {
@@ -64,7 +68,7 @@ Page({
     this.setData({ 'newMenu.ingredients': ingredients });
   },
 
-  onIngredientQuantityInput(e) {
+  onQuantityInput(e) {
     const index = e.currentTarget.dataset.index;
     const value = e.detail.value;
     const ingredients = this.data.newMenu.ingredients;
@@ -72,9 +76,17 @@ Page({
     this.setData({ 'newMenu.ingredients': ingredients });
   },
 
+  onUnitChange(e) {
+    const index = e.currentTarget.dataset.index;
+    const unitIndex = e.detail.value;
+    const ingredients = this.data.newMenu.ingredients;
+    ingredients[index] = { ...ingredients[index], unit: this.data.units[unitIndex], unitIndex };
+    this.setData({ 'newMenu.ingredients': ingredients });
+  },
+
   addIngredient() {
     const ingredients = this.data.newMenu.ingredients;
-    ingredients.push({ name: '', quantity: '', unit: '' });
+    ingredients.push({ name: '', quantity: '', unit: '', unitIndex: 0 });
     this.setData({ 'newMenu.ingredients': ingredients });
   },
 
@@ -100,17 +112,33 @@ Page({
     });
   },
 
-  confirmAdd() {
+  submitMenu() {
     const db = wx.cloud.database();
+    const newMenu = this.data.newMenu;
+
+    if (!newMenu.name || newMenu.ingredients.length === 0 || !newMenu.image) {
+      wx.showToast({
+        title: '请填写完整信息',
+        icon: 'none'
+      });
+      return;
+    }
+
     db.collection('menus').add({
       data: {
-        ...this.data.newMenu,
+        ...newMenu,
         _openid: wx.getStorageSync('openid'),
         createTime: db.serverDate()
       }
     }).then(() => {
+      wx.showToast({ title: '菜单保存成功' });
       this.loadMenus();
-      this.setData({ newMenu: { name: '', ingredients: [], image: '' } });
+      this.setData({
+        newMenu: { name: '', ingredients: [], image: '' },
+        drawerVisible: false
+      });
+    }).catch(() => {
+      wx.showToast({ title: '保存失败', icon: 'none' });
     });
   }
 });

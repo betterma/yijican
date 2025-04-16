@@ -16,7 +16,7 @@
 
     <!-- 底部抽屉 -->
     <view class="drawer-mask" wx:if="{{drawerVisible}}" bindtap="closeDrawer"></view>
-    <view class="drawer-container {{drawerVisible ? 'show' : ''}}">
+    <view class="drawer-container {{drawerVisible ? 'show' : ''}}" wx:if="{{drawerVisible}}">
         <!-- 抽屉头部 -->
         <view class="drawer-header">
         <text>新增菜单</text>
